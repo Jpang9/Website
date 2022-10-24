@@ -92,15 +92,15 @@ rule Wannacry {
 		description = "Were da Wannacry at tho"
 
 	strings:
-			$strings1 = "iuqerfsodp9ifjaposdfjhgosurijfaewrwergwea" ascii
-			$strings2 = "WINDOWS"
-			$strings3 = "tasksche.exe"
-			$PE_magic_byte = "MZ"
+		$strings1 = "iuqerfsodp9ifjaposdfjhgosurijfaewrwergwea" ascii
+		$strings2 = "WINDOWS"
+		$strings3 = "tasksche.exe"
+		$PE_magic_byte = "MZ"
 
 	condition:
-			$PE_magic_byte at 0 and
-			 ($strings1 and $strings2) or
-			 ($strings1 and $strings3)
+		$PE_magic_byte at 0 and
+		($strings1 and $strings2) or
+		($strings1 and $strings3)
 			 
 }
 ```
