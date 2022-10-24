@@ -3,12 +3,12 @@
 # https://learnxinyminutes.com/docs/yaml/
 
 title: Potatech
-name: Kent Pang
+name: Kent
 email: jpang9@outlook.com
 description: >-
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-  labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-  ex ea commodo consequat. Duis aute irure dolor in....
+  The names Kent, I'm a cybersecurity enthusiast, don't really care what i'm learning as long as i'm learning something.
+  Got to top 1% in Tryhackme, hovering around 1500~, currently busy with Malware Analysis and Malware Development, but hey
+  these are my notes so feel free to go through it if you want :P.
 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://go-outside.xyz" # the base hostname & protocol for your site, e.g. http://example.com
@@ -19,9 +19,9 @@ github_link:  https://github.com/Jpang9
 linkedin_link: https://www.linkedin.com/in/kent-pang-1425bb239/
 
 work:
-  -
-  -
-  -
+  - ""
+  - ""
+  - ""
 
 
 # Build settings
