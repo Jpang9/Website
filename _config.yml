@@ -18,8 +18,8 @@ github_link:  https://github.com/Jpang9
 linkedin_link: https://www.linkedin.com/in/kent-pang-1425bb239/
 
 # Uncomment as necessary
-#work:
-#  - ["Name of work", https://URLTOWORK.com]
+work:
+  - ["TCM Malware Analysis (PDF)", /Filesfolder/certificate-of-completion-for-practical-malware-analysis-triage.pdf]
 #  - ["Name of work", https://URLTOWORK.com]
 #  - ["Name of work", https://URLTOWORK.com]
 
