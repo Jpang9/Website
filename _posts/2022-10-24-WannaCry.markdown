@@ -41,10 +41,66 @@ for host with this same vulnerability.</p>
 <p>icacls command is executed to a file with a hidden attribute</p>
 <br>
 
-![IATS](/images/Wannacry/IATS.jpeg)
+![IATS](/images/Wannacry/IATs.jpeg)
 <p>Multiple IAT's from the kernel32.api is called</p>
 <br>
 
 ![IATS](/images/Wannacry/Compression.jpeg)
 <p>Virtual Size and Raw Size are similar, file may not be compressed</p>
 <br>
+<br>
+<br>
+
+### Dynamic Analysis
+![killswitchcheck](/images/Wannacry/Calltokillswitch.jpeg)
+<p>Checks if it can connect to this url, if it can, it will not execute, if not, execute as normal</p>
+
+![arpcall](/images/Wannacry/arpcalls.jpeg)
+<p>Check other devices within subnet, vulnerability check on local network</p>
+<br>
+
+![zombiescanning](/images/Wannacry/zombiescanvuln.jpeg)
+<p>Start scanning for hosts on the WWW, allowing it to spread to another host if the vulnerability is found</p>
+<br>
+
+![smbconnect](/images/Wannacry/callstomalicioussmbs.jpeg)
+<p>Connect to a malicious and a local SMB using anonymous creds</p>
+<br>
+
+![artifacts](/images/Wannacry/unpackedartifacts.jpeg)
+<p>Unpacks Tor files here along with ransom notes demanding ransom</p>
+<br>
+
+### Advanced Static Analysis
+![killswitchcheck](/images/Wannacry/killswitchx86.jpeg)
+<p>Check if it can connect to url, if not continue... confirmed when I switched the "Jump if Not Equal" instruction and it executed with the opposite condition</p>
+<br>
+
+![failandsuccesscondition](/images/Wannacry/continueifnotfound.jpeg)
+<p>Left graph displays instructions if the binary can't connect to the url, Right graph is if it can connect to the url</p>
+<br>
+
+### Yara Rule
+
+
+```yara
+rule Wannacry {
+
+	meta:
+		last_updated = "2022-10-24"
+		author = "Potatech"
+		description = "Were da Wannacry at tho"
+
+	strings:
+			$strings1 = "iuqerfsodp9ifjaposdfjhgosurijfaewrwergwea" ascii
+			$strings2 = "WINDOWS"
+			$strings3 = "tasksche.exe"
+			$PE_magic_byte = "MZ"
+
+	condition:
+			$PE_magic_byte at 0 and
+			 ($strings1 and $strings2) or
+			 ($strings1 and $strings3)
+			 
+}
+```
