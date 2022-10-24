@@ -3,7 +3,7 @@ layout: page
 ---
 
 <div class="main">
-    <div class="page-title center">{{ page.title }}</div>
+    <div class="page-title center"><b>{{ page.title }}</b></div>
     <article class="entry">
         <div class="text">{{ content }}</div>
         <div class="date">

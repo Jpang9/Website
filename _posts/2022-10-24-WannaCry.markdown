@@ -1,10 +1,9 @@
 ---
 layout: post
+title: "WannaCry Malware Analysis"
 categories: blog malanalysis 
 excerpt_separator: <!-- excerpt_end -->
 ---
-## WannaCry Malware Analysis
-
 <!-- excerpt_start -->
 This was my analysis on the Wannacry ransomware, which I performed while I was studying in the TCM malware analysis lab.
 <!-- excerpt_end -->
@@ -16,6 +15,7 @@ This was my analysis on the Wannacry ransomware, which I performed while I was s
 
 ### Executive Summary
 Md5 - db349b97c37d22f5ea1d1841e3c89eb4
+
 The wannaCry Ransomware abuses the [EternalBlue Exploit](https://www.avast.com/c-eternalblue), thus allowing the malware
 to gain administrator privileges upon accessing the machine; the Malware checks for other machines within
 the subnet with ARP calls, creates a hidden folder within C:\ which extracts the TOR browser for bitcoin payment, than encrypts everything

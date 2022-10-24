@@ -39,6 +39,7 @@ div.main .introduction .image {
 
 div.main .introduction .text {
     flex: 1 1 0px;
+    font-size: 1.15em;
 
 }
 
@@ -58,12 +59,6 @@ div.recent .post .link {
 
 div.recent .post .date {
     margin-bottom: 2px;
-}
-
-article.entry {
-    position: relative;
-    padding: 16px;
-    background-color: var(--standard-highlight-colour);
 }
 
 article.post {
@@ -102,10 +97,32 @@ article.post img {
     text-align: right;
 }
 
+
+article.entry {
+    overflow-wrap: break-word;
+    position: relative;
+    padding: 16px;
+    background-color: var(--standard-highlight-colour);
+}
+
+article.entry a {
+    color: var(--post-link-colour);
+    text-decoration: underline;
+}
+
 article.entry img {
     width: 100%;
 }
 
+article.entry pre {
+    background-color: var(--code-block-background);
+    overflow-x: auto;
+    padding: 8px;
+}
+
+article.entry h3 {
+    color: var(--sub-title-colour)
+}
 
 @media(max-width:1360px) {
     div.main {
@@ -142,18 +159,7 @@ article.entry img {
         top: initial;
         right: initial;
     }
-
-    article.post p {
-        margin: 0;
-    }
-
-    article.post img {
-        display: none;
-    }
-
 }
-
-
 
 @media(max-width:600px) {
     div.main {

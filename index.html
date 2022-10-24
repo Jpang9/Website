@@ -18,13 +18,15 @@ layout: page
     </div>
     {% endfor %}
   </div>
+  {% if site.work %}
   <div class="sub-title center">My Work</div>
   <div class="recent">
     {% for work in site.work %}
     <div class="post">
-      <span>- <a href="#" class="link">{{ work }}</a> </span>
+      <span>- <a href="{{work[1]}}" class="link">{{ work[0] }}</a> </span>
     </div>
     {% endfor %}
   </div>
+  {% endif %}
 <br><br><br>
 </div>
