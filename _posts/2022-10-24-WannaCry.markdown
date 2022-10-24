@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "WannaCry Malware Analysis"
-date:   2022-10-24 20:00:00 +1000
 categories: blog malanalysis 
 excerpt_separator: <!-- excerpt_end -->
 ---
@@ -28,4 +27,24 @@ that isn't in SYSTEM32 or essential for the system to run.</p>
 and trying to spread to other host vulnerable to the EternalBlue Exploit. The malware unpacks into C:\, uses task scheduler for 
 persistence, checks for other host within the network, encrypts all files, finally starts scanning random IPs within the WWW 
 for host with this same vulnerability.</p>
-<p>![Graph](/images/Wannacry/WannacryGraph.jpeg)</p>
+
+![Graph](/images/Wannacry/WannacryGraph.jpeg)
+<br>
+<br>
+
+### Basic Static Analysis
+![strings1](/images/Wannacry/strings1.jpeg)
+<p>Url In plain string text</p>
+<br>
+
+![strings2](/images/Wannacry/strings2.jpeg)
+<p>icacls command is executed to a file with a hidden attribute</p>
+<br>
+
+![IATS](/images/Wannacry/IATS.jpeg)
+<p>Multiple IAT's from the kernel32.api is called</p>
+<br>
+
+![IATS](/images/Wannacry/Compression.jpeg)
+<p>Virtual Size and Raw Size are similar, file may not be compressed</p>
+<br>
