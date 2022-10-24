@@ -2,16 +2,16 @@
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 
-title: Potato Patote
-name: Potato
-email: potato@potato.com
+title: Potatech
+name: Kent Pang
+email: jpang9@outlook.com
 description: >-
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
   labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
   ex ea commodo consequat. Duis aute irure dolor in....
 
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://go-outside.xyz" # the base hostname & protocol for your site, e.g. http://example.com
 
 notes_link: "#"
 
@@ -19,9 +19,9 @@ github_link:  https://github.com/Jpang9
 linkedin_link: https://www.linkedin.com/in/kent-pang-1425bb239/
 
 work:
-  - test
-  - test 2
-  - helllo
+  -
+  -
+  -
 
 
 # Build settings
