@@ -1,0 +1,21 @@
+---
+permalink: /blog/
+layout: page
+title: Blog
+---
+<div class="main">
+  <div class="page-title center">{{ page.title }}</div>
+
+  {% for post in site.posts limit:5 %}
+
+  <article class="post">
+    <div class="title"><a href="{{ post.url }}">{{ post.title }}</a></div>
+    <div class="info">
+      {{ post.date | date: "%B %e, %Y" }} - {% for cat in post.categories %} {{ cat | remove: "blog" }} {% endfor %}
+    </div>
+    {% assign excerptParts = post.excerpt | split: "<!-- excerpt_start -->" %}
+    <div class="text">{{ excerptParts[1] | truncate: 250 }}</div>
+
+  </article>
+  {% endfor %}
+</div>

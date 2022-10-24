@@ -1,0 +1,30 @@
+---
+permalink: /
+layout: page
+---
+
+<div class="main">
+  <div class="page-title center">Hi! I'm {{ site.name }}</div>
+  <div class="introduction">
+    <div class="text">{{ site.description }}</div>
+    <div class="image"></div>
+  </div>
+  <div class="sub-title center">Recent Posts</div>
+  <div class="recent">
+    {% for post in site.posts limit:5 %}
+    <div class="post">
+      <div class="date">{{ post.date | date: "%b %e, %Y" }} </div>
+      <span>- <a href="{{ post.url }}" class="link">{{ post.title }}</a> </span>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="sub-title center">My Work</div>
+  <div class="recent">
+    {% for work in site.work %}
+    <div class="post">
+      <span>- <a href="#" class="link">{{ work }}</a> </span>
+    </div>
+    {% endfor %}
+  </div>
+<br><br><br>
+</div>

@@ -1,0 +1,172 @@
+div.main {
+    width: var(--max-width);
+    margin: auto;
+}
+
+div.main .page-title.center {
+    font-size: 1.5em;
+    display: flex;
+    padding-top: 100px;
+    height: 150px;
+    align-items: center;
+    justify-content: center;
+}
+
+div.main .sub-title.center {
+    font-size: 1.5em;
+    text-decoration: underline;
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    justify-content: center;
+}
+
+div.main .introduction {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 10px;
+    min-height: 300px;
+}
+
+div.main .introduction .image {
+    flex: 1 1 0px;
+    background-image: url('/images/intro-image.webp');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+div.main .introduction .text {
+    flex: 1 1 0px;
+
+}
+
+div.recent {
+    padding: 16px;
+    padding-top: 0;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+div.recent .post .link {
+    text-decoration: underline;
+    color: var(--highlight-text-colour);
+}
+
+div.recent .post .date {
+    margin-bottom: 2px;
+}
+
+article.entry {
+    position: relative;
+    padding: 16px;
+    background-color: var(--standard-highlight-colour);
+}
+
+article.post {
+    position: relative;
+    padding: 16px;
+    background-color: var(--standard-highlight-colour);
+    margin-bottom: 16px;
+}
+
+article.post .title {
+    font-size: 1.4em;
+    text-decoration: underline;
+}
+
+article.post .text {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+article.post .info {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
+article.post p {
+    margin: 0;
+}
+
+article.post img {
+    display: none;
+}
+
+.show-post {
+    width: 100%;
+    text-align: right;
+}
+
+article.entry img {
+    width: 100%;
+}
+
+
+@media(max-width:1360px) {
+    div.main {
+        width: 500px;
+        margin: auto;
+    }
+
+    article.post {
+        position: relative;
+        padding: 16px;
+        background-color: var(--standard-highlight-colour);
+        margin-bottom: 16px;
+    }
+
+    article.post .title {
+        font-size: 1.4em;
+        text-align: center;
+        text-decoration: underline;
+    }
+
+    article.post .text {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    article.post .info {
+        text-align: center;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-size: 0.8em;
+        
+
+        position:  initial;
+        top: initial;
+        right: initial;
+    }
+
+    article.post p {
+        margin: 0;
+    }
+
+    article.post img {
+        display: none;
+    }
+
+}
+
+
+
+@media(max-width:600px) {
+    div.main {
+        width: 90%;
+        margin: auto;
+    }
+
+    div.main .introduction {
+        flex-direction: column-reverse;
+    }
+
+    div.main .introduction .image {
+        flex: initial;
+        height: 80vw;
+    }
+}
