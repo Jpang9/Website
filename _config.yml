@@ -13,7 +13,7 @@ description: >-
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://go-outside.xyz" # the base hostname & protocol for your site, e.g. http://example.com
 
-notes_link: "#"
+#notes_link: "#"
 github_link:  https://github.com/Jpang9
 linkedin_link: https://www.linkedin.com/in/kent-pang-1425bb239/
 

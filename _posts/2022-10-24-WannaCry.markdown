@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "WannaCry Malware Analysis"
-categories: blog malanalysis 
+categories: blog malware analysis 
 excerpt_separator: <!-- excerpt_end -->
 ---
 <!-- excerpt_start -->
@@ -9,6 +9,7 @@ This was my analysis on the Wannacry ransomware, which I performed while I was s
 <!-- excerpt_end -->
 
 ![monke](/images/Wannacry/Monke.jpeg)
+<br>
 <br>
 <br>
 <br>
@@ -22,6 +23,8 @@ the subnet with ARP calls, creates a hidden folder within C:\ which extracts the
 that isn't in SYSTEM32 or essential for the system to run.
 <br>
 <br>
+<br>
+<br>
 
 ### High-Level Technical Summary
 WannaCry Attempts to connect to hxxp[://]www[.]iuqerfsodp9ifjaposdfjhgosurijfaewrwergwea[.]com, if connection to this url fails, the malware to proceed as normal, encrypting
@@ -32,18 +35,23 @@ for host with this same vulnerability.
 ![Graph](/images/Wannacry/WannacryGraph.jpeg)
 <br>
 <br>
+<br>
+<br>
 
 ### Basic Static Analysis
 ![strings1](/images/Wannacry/strings1.jpeg)
 Url In plain string text
 <br>
+<br>
 
 ![strings2](/images/Wannacry/strings2.jpeg)
 icacls command is executed to a file with a hidden attribute
 <br>
+<br>
 
 ![IATS](/images/Wannacry/IATs.jpeg)
 Multiple IAT's from the kernel32.api is called
+<br>
 <br>
 
 ![IATS](/images/Wannacry/Compression.jpeg)
@@ -55,30 +63,38 @@ Virtual Size and Raw Size are similar, file may not be compressed
 ### Dynamic Analysis
 ![killswitchcheck](/images/Wannacry/Calltokillswitch.jpeg)
 Checks if it can connect to this url, if it can, it will not execute, if not, execute as normal
+<br>
+<br>
 
 ![arpcall](/images/Wannacry/arpcalls.jpeg)
 Check other devices within subnet, vulnerability check on local network
+<br>
 <br>
 
 ![zombiescanning](/images/Wannacry/zombiescanvuln.jpeg)
 Start scanning for hosts on the WWW, allowing it to spread to another host if the vulnerability is found
 <br>
+<br>
 
 ![smbconnect](/images/Wannacry/callstomalicioussmbs.jpeg)
 Connect to a malicious and a local SMB using anonymous creds
 <br>
+<br>
 
 ![artifacts](/images/Wannacry/unpackedartifacts.jpeg)
 Unpacks Tor files here along with ransom notes demanding ransom
+<br>
 <br>
 
 ### Advanced Static Analysis
 ![killswitchcheck](/images/Wannacry/killswitchx86.jpeg)
 Check if it can connect to url, if not continue... confirmed when I switched the "Jump if Not Equal" instruction, and it executed with the opposite condition
 <br>
+<br>
 
 ![failandsuccesscondition](/images/Wannacry/continueifnotfound.jpeg)
 Left graph displays instructions if the binary can't connect to the url, Right graph is if it can connect to the url
+<br>
 <br>
 
 ### Yara Rule
