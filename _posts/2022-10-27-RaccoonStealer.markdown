@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Raccoon Stealer Malware Analysis"
+title: "RaccoonStealer Malware Analysis"
 categories: blog malware analysis
 excerpt_separator: <!-- excerpt_end -->
 ---
@@ -10,6 +10,10 @@ crypto wallets, and any sensitive documents.
 <!-- excerpt_end -->
 
 ![SadgeRaccoon](/images/RaccoonStealerv2/SadgeRat.jpeg)
+<br>
+<br>
+<br>
+<br>
 
 ### Executive Statement 
 MD5 - 80b0745106a9a4ed3c18264ba1887bff
