@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "WannaCry Malware Analysis"
+title: "WannaCry Analysis"
 categories: blog malware analysis 
 excerpt_separator: <!-- excerpt_end -->
 ---

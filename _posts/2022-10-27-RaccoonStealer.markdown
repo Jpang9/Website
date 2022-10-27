@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "RaccoonStealer Malware Analysis"
+title: "RaccoonStealer Analysis"
 categories: blog malware analysis
 excerpt_separator: <!-- excerpt_end -->
 ---
@@ -43,7 +43,7 @@ These files are written into C:\users\{username}\Appdata\LocalLow\{FileName}, an
 in a TCP connection for exfiltration, after exfiltration, the malware will wipe the sqlite database and any other changes its made, pretty much going back its pre-detonation state.
 <br>
 
-NEEDS A GRAPH DONE UP
+![Graph](/images/RaccoonStealerv2/Graphing.jpeg)
 <br>
 <br>
 <br>
@@ -67,6 +67,7 @@ The difference between the Virtual and Raw bytes doesn't seem that big of a diff
 <br>
 
 ![Deciphering](/images/RaccoonStealerv2/Base64EncryptedTaskDecryption.png)
+The Commands are deciphered from base64 and then de-encrypted from RC4 with the key "edinayarossiya"
 <br>
 <br>
 <br>
