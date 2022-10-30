@@ -5,7 +5,7 @@ categories: blog malware analysis
 excerpt_separator: <!-- excerpt_end -->
 ---
 <!-- excerpt_start -->
-This was my analysis on the Wannacry ransomware, which I performed while I was studying in the TCM malware analysis lab.
+This was my analysis on the Wanna-cry ransomware, which I performed while I was studying in the TCM malware analysis lab.
 <!-- excerpt_end -->
 
 ![monke](/images/Wannacry/Monke.jpeg)
