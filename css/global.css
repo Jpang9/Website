@@ -166,6 +166,10 @@ div.web-nav .socials span#email {
     background-image: url("/images/icons/Email-Icon.png");
 }
 
+div.web-nav .socials span#tryhackme {
+    background-image: url("/images/icons/Tryhackme-Icon.svg");
+}
+
 div.web-nav .nav-buttons {
     gap:2px;
     text-decoration: underline;
