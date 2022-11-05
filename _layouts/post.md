@@ -15,5 +15,9 @@ layout: page
     <br>
     <br>
     <br>
-
+    <div class="preview">
+    <img src=""/>
+    </div>
 </div>
+
+<script src="/js/post.js?v=0.1"></script>

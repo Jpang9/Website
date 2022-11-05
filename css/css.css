@@ -124,7 +124,43 @@ article.entry h3 {
     color: var(--sub-title-colour)
 }
 
+article.entry img {
+    position: relative;
+    cursor: pointer;
+}
+
+div.preview {
+    background-color: var(--background-colour);
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow:scroll;
+    z-index: -999;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+div.preview.shown {
+    opacity: 1;
+    z-index: 1;
+}
+
+div.preview img {
+    position: absolute;
+    float: left;
+    height: 80%;
+    top:0;
+    bottom: 0;
+    left:0;
+    right: 0;
+    margin: auto;
+}
+
+
 @media(max-width:1360px) {
+
     div.main {
         width: 500px;
         margin: auto;
@@ -153,7 +189,6 @@ article.entry h3 {
         margin-top: 5px;
         margin-bottom: 5px;
         font-size: 0.8em;
-        
 
         position:  initial;
         top: initial;
@@ -161,7 +196,18 @@ article.entry h3 {
     }
 }
 
+@media(max-width:1000px) {
+
+    div.preview {
+    }
+    div.preview img {
+
+    }
+
+}
+
 @media(max-width:600px) {
+
     div.main {
         width: 90%;
         margin: auto;
