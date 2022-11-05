@@ -171,14 +171,16 @@ div.web-nav .socials span#tryhackme {
 }
 
 div.web-nav .nav-buttons {
-    gap:2px;
-    text-decoration: underline;
+    gap:5px;
+    width: fit-content;
     display: flex;
     flex-direction: column;
+    text-decoration: underline;
 }
-
-div.web-nav .nav-buttons * {
-    /*border-bottom: 1px white solid;*/
+/* for some reason the first child element doesn't get underlined????? */
+div.web-nav .nav-buttons::before {
+    content: '';
+    position: relative;
 }
 
 
