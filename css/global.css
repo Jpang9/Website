@@ -222,12 +222,9 @@ div.web-nav .nav-buttons::before {
         justify-content: center;
         margin-top: 6px;
     }
-    
-    div.web-nav .socials span {
 
-    }
-    
     div.web-nav .nav-buttons {
+        width: 100%;
         gap:2px;
         text-decoration: underline;
         display: flex;
