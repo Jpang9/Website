@@ -15,8 +15,8 @@ as a service.
 <br>
 <br>
 
-### Executive Summary
-Stealer type malware primarily written in C++, checks system configuration, than will create a tcp connection 
+### Executive Summary### ADD MORE TO THIS :D
+Stealer type malware, checks system configuration, than will create a tcp connection 
 back to the C2 listener; allowing for further instructions on what to steal along with the ability to deploy a second stage 
 malware, usually a trojan. The Redline Stealer samples didn't have any signs of persistence.
 <br>
@@ -45,7 +45,7 @@ forms the decrypted instructions for red line stealer.
 The decrypted instruction is than stored as a "Variable" within the binary; After the decryption process is completed, it will
 perform Process injection to have this code segment execute.
 
-The malware will start and suspend "AppLaunch.exe" (A Legitimate binary from .Net Framework), after AppLaunch.exe has been started,
+The malware will start and suspend "AppLaunch.exe" (A Legitimate binary from Microsoft's .Net Framework); after AppLaunch.exe has been started,
 the malware will then query and write the decoded segment into AppLaunch's memory. 
 
 After the segment has been written into the binary,
@@ -54,13 +54,13 @@ the malware will then call the "FlushInstructionCache" Api to remove any traces 
 After the process injection has been carried out, the injected process will now be removed from the suspended state and start querying 
 sensitive and system information.
 
-Information retrieved from the enumerating process is written into a SQLITE database and 
-exfiltrated via a TCP request, this TCP request will exfiltrate the information and install a second stage malware, assuming that setting has been
-configured.
+Information retrieved from the enumerating process is exfiltrated via a TCP request and may install a second stage malware, 
+assuming that setting has been configured.
+<br>
 <br>
 <br>
 
-![FlowChart]
+![FlowChart](/images/RedLineStealer/ExecutionFlow.png)
 <br>
 <br>
 <br>
@@ -110,4 +110,53 @@ Response is IP of malicious C2 address.
 Performs Multithreading to quickly decrypt the encrypted data.
 <br>
 <br>
+
+![Threaded Decryption Instruction](/images/RedLineStealer/DecryptionInstructionThreaded.png)<br>
+Red - Convert string to UTF-16 <br>
+Blue - The Decryption Instruction <br>
+Pink - Add Decrypted string on top of previous string <br>
+<br>
+<br>
+
+![Instruction to start Child Binary](/images/RedLineStealer/StartAppLaunchSuspended.png)
+This call instruction is used to start the "AppLauncher.exe" binary in a suspended state.
+<br>
+<br>
+
+![Process Injection](/images/RedLineStealer/ProcessInjection.png)
+The decoded block is than injected into "AppLauncher.exe".
+<br>
+
+![Before Process Injection](/images/RedLineStealer/BeforeInjection.png)
+Before Process Injection
+<br>
+<br>
+
+![After Process Injection](/images/RedLineStealer/PostInjection.png)
+After Process Injection, once the process injection has occurred, the "AppLauncher.exe" will exit from a suspended
+state and execute the malware code
+<br>
+<br>
+<br>
+
+### Something Interesting I learnt
+If you can find what binary the malware is injecting into; you can actually use process-hacker to dump the strings of the 
+memory that is sitting in the infected binary.
+![ProcessHacker](/images/RedLineStealer/ProcessHacker2.png)
+<br>
+<br>
+
+![SystemEnumeration](/images/RedLineStealer/SysEnv.png)
+By dumping the strings, you can now see what the malware is trying to do, such as, enumerating your system configs
+<br>
+<br>
+
+![ContentChecking](/images/RedLineStealer/TypesofDatatoSteal.png)
+Or even what the malware is looking for and clues to how it is retrieving it from your system.
+<br>
+<br>
+
+![WalletStealerb64](/images/RedLineStealer/WalletB64.png)
+![WalletStealerDecoded](/images/RedLineStealer/WalletDecoded.png)
+It also has details on what crypto-wallet it is looking for.
 
