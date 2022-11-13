@@ -5,20 +5,24 @@ categories: blog malware analysis
 excerpt_separator: <!-- excerpt_end -->
 ---
 <!-- excerpt_start -->
-RedLine Stealer; a stealer type malware distributed through macro-laced office documents designed to steal credentials along with
+RedLine Stealer; a stealer type malware distributed through macro-laced office documents or marketed as "Cracked" software,
+designed to steal credentials along with
 the function to deploy a second stage malware. This malware is obtainable for 150-200$ on hacker forums, and is intended as malware
 as a service.
 <!-- excerpt_end -->
 
-![meme]()
+![meme](/images/RedLineStealer/MEME.jpg)
 <br>
 <br>
 <br>
 
-### Executive Summary### ADD MORE TO THIS :D
-Stealer type malware, checks system configuration, than will create a tcp connection 
-back to the C2 listener; allowing for further instructions on what to steal along with the ability to deploy a second stage 
-malware, usually a trojan. The Redline Stealer samples didn't have any signs of persistence.
+### Executive Summary
+RedLine Stealer is a Stealer type malware, designed to enumerate and exfiltrate system information and files.<br>
+
+Exfiltrated information is sent through a TCP protocol back to the Command & Control address, and once exfiltrated, the malware can deploy a second stage
+malware such as a trojan or ransomware. <br>
+
+RedLine stealer doesn't have a persistence mechanism and is commonly deployed through macro-laced documents or disguised as "Cracked" software.
 <br>
 <br>
 <br>
