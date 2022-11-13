@@ -28,7 +28,7 @@ RedLine stealer doesn't have a persistence mechanism and is commonly deployed th
 <br>
 
 
-#### SHA256Sum
+### SHA256Sum
 <u>Sample 1 - Primary Analysis - Process Injection Type</u>
 a486e074ab9751f2873e017237fe22ed98dad4214e5d76feec8424fa5166eae5
 
