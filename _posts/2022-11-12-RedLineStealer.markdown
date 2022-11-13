@@ -5,11 +5,11 @@ categories: blog malware analysis
 excerpt_separator: <!-- excerpt_end -->
 ---
 <!-- excerpt_start -->
-RedLine Stealer; a stealer type malware distributed through macro-laced office documents or marketed as "Cracked" software,
-designed to steal credentials along with
-the function to deploy a second stage malware. This malware is obtainable for 150-200$ on hacker forums, and is intended as malware
-as a service.
+RedLine Stealer; a stealer type malware obtainable for 150-200$ on hacker forums, sold as MAS (Malware-As-A-Service), and it allows a low skilled 
+threat actor to easily build a stealer on the fly.
 <!-- excerpt_end -->
+<br>
+<br>
 
 ![meme](/images/RedLineStealer/MEME.jpg)
 <br>
@@ -23,7 +23,6 @@ Exfiltrated information is sent through a TCP protocol back to the Command & Con
 malware such as a trojan or ransomware. <br>
 
 RedLine stealer doesn't have a persistence mechanism and is commonly deployed through macro-laced documents or disguised as "Cracked" software.
-<br>
 <br>
 <br>
 <br>
@@ -53,7 +52,7 @@ The malware will start and suspend "AppLaunch.exe" (A Legitimate binary from Mic
 the malware will then query and write the decoded segment into AppLaunch's memory. 
 
 After the segment has been written into the binary,
-the malware will then call the "FlushInstructionCache" Api to remove any traces of process injection instruction.
+the malware will then call the "FlushInstructionCache" Api to hide any information regarding process injection.
 
 After the process injection has been carried out, the injected process will now be removed from the suspended state and start querying 
 sensitive and system information.
@@ -101,7 +100,7 @@ The malware abuses "AppLaunch.exe" to call back to it's C2.
 <br>
 <br>
 
-##### Attempted to catch TCP callback with another sample
+### Attempted to catch TCP callback with another sample
 ![SecondarySample](/images/RedLineStealer/SecondSample.png)
 ![CaughtTCP](/images/RedLineStealer/TCPCATCH.png)
 Attempted to catch the TCP request with another sample as it wasn't a process injection type attack. <br>
@@ -109,14 +108,14 @@ Response is IP of malicious C2 address.
 <br>
 <br>
 
-
+### Back to Original Binary
 ![ThreadCreation](/images/RedLineStealer/DecryptionThreadCalls.png)
 Performs Multithreading to quickly decrypt the encrypted data.
 <br>
 <br>
 
 ![Threaded Decryption Instruction](/images/RedLineStealer/DecryptionInstructionThreaded.png)<br>
-Red - Convert string to UTF-16 <br>
+Red - Either converts string into another format or is used for the decryption process <br>
 Blue - The Decryption Instruction <br>
 Pink - Add Decrypted string on top of previous string <br>
 <br>
@@ -129,6 +128,7 @@ This call instruction is used to start the "AppLauncher.exe" binary in a suspend
 
 ![Process Injection](/images/RedLineStealer/ProcessInjection.png)
 The decoded block is than injected into "AppLauncher.exe".
+<br>
 <br>
 
 ![Before Process Injection](/images/RedLineStealer/BeforeInjection.png)
@@ -162,5 +162,7 @@ Or even what the malware is looking for and clues to how it is retrieving it fro
 
 ![WalletStealerb64](/images/RedLineStealer/WalletB64.png)
 ![WalletStealerDecoded](/images/RedLineStealer/WalletDecoded.png)
-It also has details on what crypto-wallet it is looking for.
+It also has details on what crypto-wallet the malware is looking for.
+<br>
+<br>
 

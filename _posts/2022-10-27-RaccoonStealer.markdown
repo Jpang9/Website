@@ -8,6 +8,8 @@ excerpt_separator: <!-- excerpt_end -->
 An analysis performed on the Raccoon Stealer Malware; A stealer type malware designed to take anything valuable you own, such passwords,
 crypto wallets, and any sensitive documents. 
 <!-- excerpt_end -->
+<br>
+<br>
 
 ![SadgeRaccoon](/images/RaccoonStealerv2/SadgeRat.jpeg)
 <br>
