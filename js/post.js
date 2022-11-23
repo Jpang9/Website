@@ -16,6 +16,33 @@ function previewImage() {
     preview.classList.add('shown')
     preview_img.src = this.src
 
+    // reset values
+    preview_img.style.maxWidth = "initial"
+    preview_img.style.width = "initial"
+    preview_img.style.height = "initial"
+    
+    // check image height against it's width
+    if (this.naturalHeight > this.naturalWidth) {
+        preview_img.style.height = "calc(100% - 125px)"
+        preview_img.style.width = "initial"
+    } else {
+        preview_img.style.height = "initial"
+        preview_img.style.width = "calc(100% - 20px)"
+    }
+
+    // little bit of lazy code but should be good
+    setTimeout(() => {  
+
+        console.log(preview_img.width, window.innerWidth)
+        if (preview_img.width >= window.innerWidth) {
+            preview_img.style.height = "initial"
+            preview_img.style.maxWidth = "100%"
+        } else {
+            preview_img.style.maxWidth = "initial"
+        }
+    
+    }, 50);
+
 }
 
 function hideImage() {

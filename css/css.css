@@ -150,7 +150,6 @@ div.preview.shown {
 div.preview img {
     position: absolute;
     float: left;
-    width: calc(100% - 10px);
     top:0;
     bottom: 0;
     left:0;
