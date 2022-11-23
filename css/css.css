@@ -150,7 +150,7 @@ div.preview.shown {
 div.preview img {
     position: absolute;
     float: left;
-    height: 80%;
+    width: calc(100% - 10px);
     top:0;
     bottom: 0;
     left:0;
@@ -162,7 +162,7 @@ div.preview img {
 @media(max-width:1360px) {
 
     div.main {
-        width: 500px;
+        width: var(--tablet-width);
         margin: auto;
     }
 

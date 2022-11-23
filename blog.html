@@ -6,7 +6,7 @@ title: Blog
 <div class="main">
   <div class="page-title center">{{ page.title }}</div>
 
-  {% for post in site.posts limit:5 %}
+  {% for post in site.posts %}
 
   <article class="post">
     <div class="title"><a href="{{ post.url }}">{{ post.title }}</a></div>
