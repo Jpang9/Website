@@ -6,12 +6,12 @@ title: Potatech
 name: Kent
 email: jpang9@outlook.com
 description: >-
-  The names Kent, I'm a cybersecurity enthusiast, don't really care what I'm learning as long as I'm learning something.
-  Currently busy with Malware Analysis and Malware Development, but hey
-  these are my notes so feel free to go through it if you want :P. 
-  
-  (PS, Did I write or record information that's wrong or invalid? Shoot me an email about
-  the error, and I'll look into it, or you could just email me calling me a d**k head too, kinda rude, but I don't care :D.)
+The names Kent, I'm a cybersecurity enthusiast with the goal of learning as much as I can within this industry.
+
+Focused on Tryhackme for about 8 months, alot less now as I'm more occupied with writing code and analysing malware.
+
+There's some notes below regarding my hunting journey, and if you find something wrong, feel free to shoot me an email aye.
+
 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://go-outside.xyz" # the base hostname & protocol for your site, e.g. http://example.com
@@ -24,7 +24,7 @@ tryhackme_link: "https://tryhackme.com/p/Jpang9"
 # Uncomment as necessary
 work:
   - ["TCM Malware Analysis (PDF)", /Filesfolder/certificate-of-completion-for-practical-malware-analysis-triage.pdf]
-#  - ["Name of work", https://URLTOWORK.com]
+  - ["MalJupyter", https://github.com/Jpang9/MalJupyter]
 #  - ["Name of work", https://URLTOWORK.com]
 
 
