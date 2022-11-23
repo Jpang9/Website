@@ -1,0 +1,124 @@
+---
+layout: post
+title: "Azov Analysis"
+categories: blog malware analysis
+excerpt_separator: <!-- excerpt_end -->
+---
+<!-- excerpt_start -->
+Azov, A ransomware designed to encrypt data (obviously), except the catch isn't to demand a ransom,
+it's to accuse well known cyber-security researchers.
+<!-- excerpt_end -->
+<br>
+<br>
+
+![meme]()
+<br>
+<br>
+<br>
+
+### SHA256SUM
+<br>
+
+#### Dropper
+- 7ac05b69d57813d3c18362bf3565aaf4705953802dc7c79e4c7bc7fb3b9a1095
+- 7dbc20189cc8306f3d446636e71b53e0663bc9ee3ba8f38f9b56059d6f8083b7
+- c7a7bd1b4c92ecd04a2cee933a616ed9cb567f82d8316bc8ce873a2ab8850d07
+<br>
+
+#### Dropped Binary
+- 9a952abaa9e8bc4676e2c8e53774d15198e4b9163bebf37a0bc2e238e49f2f98
+- e2ca30b2a5d896a6386d7e93addef74499fdcec1be625f8c21bfb7f6fbf83794
+- f26a427105cba33da30a7e345f398c0808ad350875ff6bc1790b17132a1c0405
+- d4b81ee9f7f012676c701b3ef9f98a6d6f224db9501ea40cc4fd5991844fe723
+<br>
+
+### Executive Summary
+Azov is a 64bit Windows Ransomware.
+
+It acts as a dropper, which drops a malicious binary with the name "rdpclient.exe" onto C:\ along with other 
+components into C:\$Recycle.bin, it also abuses HKLM/SOFTWARE/Microsoft/Windows/CurrentVersion/Run for persistence.
+
+This Ransomware isn't designed to extort cash or cryptocurrency, but is designed to frame well-known security researchers.
+<br>
+<br>
+
+### High Level Executive Summary
+Upon execution of the dropper, the binary will enumerate contents within C:\$Recycle.Bin, than proceed to delete all files within the $Recycle.Bin share.
+
+Once the files has been removed, it will dump the components used by the ransomware into the $Recycle.bin share, and 
+once the files has been dumped, and for its final instruction, it will create the runonce persistence mechanism for the dropped binary.
+
+Upon rebooting, the dropped binary "C:\ProgramData\rdpclient.exe", will execute through the runonce registry instruction.
+
+Rdpclient.exe acts as the main encryption binary, it also has the ability to perform a self check on its binary name, throwing a rdp error if the binary name
+has been modified.
+
+Upon execution, the malware will begin querying data and encrypting it with the azov extension, eventually causing all non-system components to be encrypted.
+<br>
+<br>
+<br>
+
+### Flow Chart
+![Flowchart]()
+<br>
+<br>
+<br>
+
+### Static Analysis
+![Packed](/images/Azov/Packed.png)
+Binary isn't packed, as shown in the difference between the raw-size and virtual-size.
+<br>
+<br>
+
+![IATIMPORT](/images/Azov/IAT.png)
+IAT Imports of the dropper.
+<br>
+<br>
+
+![DroppedStrings](/images/Azov/dumpedstringsofdropped.png)
+Strings of the Binary that was dropped from the dropper
+<br>
+<br>
+<br>
+
+### Dynamic Analysis
+![QueryBinItems](/images/Azov/QueryBinFiles.png)
+Queries Items in the Recycle Bin, then removes them
+<br>
+<br>
+
+![additionalDump](/images/Azov/additionaldump.png)
+![additionaldumpfiles](/images/Azov/additionaldumpfiles.png)
+Dumps resources that will be used by the ransomware.
+<br>
+<br>
+
+![DroppedBinary](/images/Azov/dropped.png)
+Drops the ransomware binary labeled as "rdpclient.exe"
+<br>
+<br>
+
+![DropperWritingPersistance](/images/Azov/persistwrite.png)
+![Persistenceregkey](/images/Azov/rdppersist.png)
+The dropper creating persistence for the dropped binary through runonce registry key.
+<br>
+<br>
+
+![restartPersist](/images/Azov/explorerexeabuse.png)
+![obfuscation](/images/Azov/rdppersistrunbyExplorer.png)
+Once the device has been restarted, the runonce will execute the malicious "rdpclient.exe". <br>
+Used for obfuscation as "Explorer.exe" is a normal windows binary and "rdpclient.exe" is masquerading as a non-malicious binary.
+<br>
+<br>
+
+![querysystemfiles](/images/Azov/queryingandopeningfiles.png)
+![encryptdata](/images/Azov/renamingFileswithazov.png)
+The malware will begin querying system information and encrypting said information.
+<br>
+<br>
+
+![renamingRDP](/images/Azov/modifyingname.png)
+If you rename "rdpclient.exe", since the malware does a self-check on its binary name, if the name has been modified, it will show a rdp error.
+<br>
+<br>
+
