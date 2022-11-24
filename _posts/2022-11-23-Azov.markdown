@@ -11,7 +11,7 @@ it's to accuse well known cyber-security researchers.
 <br>
 <br>
 
-![meme]()
+![meme](/images/Azov/Meme.png)
 <br>
 <br>
 <br>
@@ -59,7 +59,7 @@ Upon execution, the malware will begin querying data and encrypting it with the 
 <br>
 
 ### Flow Chart
-![Flowchart]()
+![Flowchart](/images/Azov/FlowChart.png)
 <br>
 <br>
 <br>
