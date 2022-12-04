@@ -36,8 +36,8 @@ Once the malware configuration has been "unpacked", the malware will perform mul
 installation mechanism; if any of these checks have failed, it will stop the binary and prevent it from proceeding.
 <br>
 
-If the checks have passed without any errors, it will than call back to the C2 for further instructions, it also has the ability to passively collect information regarding
-cryptowallets addresses.
+If the checks have passed without any errors, it will than call back to the C2 for further instructions. <br>
+The malware also has the ability to passively collect information regarding cryptowallets addresses.
 
 <br>
 <br>
@@ -54,7 +54,7 @@ The binary isn't in a packed format.
 <br>
 <br>
 
-![IAT](/images/AsyncRat/NotPacked.png)
+![IAT](/images/AsyncRat/IAT.png)
 IAT Calls
 <br>
 <br>
@@ -66,7 +66,7 @@ Signs of Persistence
 <br>
 
 ### DNSPY ANALYSIS
-###### As this binary was written in C#, it's pretty easy to check what it's doing with DNSPY lol
+#### As this binary was written in C#, it's pretty easy to check what it's doing with DNSPY lol
 ![ExecutionFlow](/images/AsyncRat/ExecutionFlow.png)
 The Execution Flow of the Malware Decompiled
 <br>
@@ -77,14 +77,14 @@ Basic Functions of the C2 client, decompiled
 <br>
 <br>
 
-#### Malware Config Decryption and Encryption
+### Malware Config Decryption and Encryption
 ![Cryption Alogrithm](/images/AsyncRat/Encryption.png)
 Encryption algorithm for the malware (Base -> CBC(HMAC AES256))
 <br>
 <br>
 <br>
 
-#### SandBox Checks
+### SandBox Checks
 ![VMChecks](/images/AsyncRat/VMCheck.png)
 Checks for signs of Vmware and Virtualisation
 <br>
@@ -106,9 +106,9 @@ Checks if the PC is running in xp
 <br>
 <br>
 
-#### Persistence Mechanism
+### Persistence Mechanism
 ![Task](/images/AsyncRat/scheduledtaskpersist.png)
-Persistence through scheduled task's on login call
+Persistence through scheduled task's "OnLogin" instruction
 <br>
 <br>
 
@@ -122,12 +122,12 @@ Abusing User registry "Run" to have the malware run on startup
 ### Network Logs
 ![fakenetcatcher](/images/AsyncRat/C2Callback.png)
 ![dnsQuery](/images/AsyncRat/WiresharkRequest.png)
-The malware to first query the Address name "hxxp[://]com86[.]endofinternet[.]net"
+The malware will first query the Address name "hxxp[://]com86[.]endofinternet[.]net"
 <br>
 <br>
 
 ![procmon](/images/AsyncRat/procmonTCP.png)
-Once the malware has connected to the malicious domain, it will being TCP communication between the implant and the server.
+Once the malware can contact the malicious domain, it will being TCP communication between the implant and the server on ports "6606", "7707", "8808".
 <br>
 <br>
 
