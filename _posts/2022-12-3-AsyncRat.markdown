@@ -10,7 +10,7 @@ AsyncRat, A windows based Trojan designed to remotely monitor and control comput
 <br>
 <br>
 
-![meme]()
+![meme](/images/AsyncRat/meme.jpg)
 
 <br>
 <br>
@@ -23,26 +23,26 @@ AsyncRat, A windows based Trojan designed to remotely monitor and control comput
 <br>
 
 ### Executive Summary
-AsyncRat is a windows based trojan with the intent to control and monitor a computer remotely through an encrypted connection; this malware is written in C#
+AsyncRat is a windows based trojan with the intent of controlling and monitoring a computer remotely through an encrypted connection; this malware is written in C#
 and has persistence along with sandbox checks during its execution process.
 <br>
 <br>
 
 ### Executive Summary
-Upon execution, the binary will unpack its settings and configs with a decrypt call using the CBC Decryption algorithm along with a basic Base64 decipher step.
+Upon execution, the binary will unpack its settings and configs with a decrypt call using a CBC Decryption algorithm along with a basic Base64 decipher step.
 <br>
 
 Once the malware configuration has been "unpacked", the malware will perform multiple "if" instructions, these instructions contains the Anti-Analysis checks, the persistence
-installation mechanism; if any of these checks have failed, it will stop the binary and prevent it from proceeding.
+installation mechanism, and if any of these checks have failed, it will tell the binary to finish up and stop running.
 <br>
 
-If the checks have passed without any errors, it will than call back to the C2 for further instructions. <br>
-The malware also has the ability to passively collect information regarding cryptowallets addresses.
+If the checks have passed without any errors, it will than call back to the C2 server for further instructions. <br>
+The malware also has the ability to passively collect information regarding cryptowallets addresses while running.
 
 <br>
 <br>
 
-![flowchart]()
+![flowchart](/images/AsyncRat/Flow.png)
 
 <br>
 <br>
@@ -66,7 +66,7 @@ Signs of Persistence
 <br>
 
 ### DNSPY ANALYSIS
-#### As this binary was written in C#, it's pretty easy to check what it's doing with DNSPY lol
+#### As this binary was written in C#, it's pretty easy to check what it's doing with DNSPY
 ![ExecutionFlow](/images/AsyncRat/ExecutionFlow.png)
 The Execution Flow of the Malware Decompiled
 <br>
