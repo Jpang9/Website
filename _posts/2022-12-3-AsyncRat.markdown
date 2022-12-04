@@ -26,7 +26,7 @@ and has persistence along with sandbox checks during its execution process.
 <br>
 <br>
 
-### Executive Summary
+### High Level Executive Summary
 Upon execution, the binary will unpack its settings and configs with a decryption call using a CBC Decryption algorithm along with basic Base64 deciphering.
 <br>
 
@@ -37,7 +37,7 @@ it will tell the binary to finish up and stop running.
 
 If the checks have passed without any errors, it will than call back to the C2 server for further instructions. <br>
 
-The malware also has the ability to passively collect information regarding cryptowallets addresses while running.
+The malware also has the ability to passively collect information regarding cryptowallet addresses while running.
 
 <br>
 <br>
@@ -97,12 +97,12 @@ Checks if the hard disk contains more than 60GB of space
 <br>
 
 ![DebuggerCheck](/images/AsyncRat/DebuggerCheck.png)
-Check if the executable is running in a debugger
+Checks if the executable is running within a debugger
 <br>
 <br>
 
 ![OSCheck](/images/AsyncRat/OSCheck.png)
-Checks if the PC is running in xp
+Checks if the device is running on Windows XP
 <br>
 <br>
 <br>
