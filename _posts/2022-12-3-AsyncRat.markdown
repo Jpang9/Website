@@ -13,8 +13,6 @@ AsyncRat, A windows based Trojan designed to remotely monitor and control comput
 ![meme](/images/AsyncRat/meme.jpg)
 
 <br>
-<br>
-<br>
 
 ### Sha256Sum
 - 53542563788e98bdc1a23102c0cdf82a08e0cfc955f23f38be064811efc2a1a0
@@ -23,25 +21,28 @@ AsyncRat, A windows based Trojan designed to remotely monitor and control comput
 <br>
 
 ### Executive Summary
-AsyncRat is a windows based trojan with the intent of controlling and monitoring a computer remotely through an encrypted connection; this malware is written in C#
+AsyncRat is an open source, windows based trojan with the intent of controlling and monitoring a computer remotely through an encrypted connection; this malware is written in C#
 and has persistence along with sandbox checks during its execution process.
 <br>
 <br>
 
 ### Executive Summary
-Upon execution, the binary will unpack its settings and configs with a decrypt call using a CBC Decryption algorithm along with a basic Base64 decipher step.
+Upon execution, the binary will unpack its settings and configs with a decryption call using a CBC Decryption algorithm along with basic Base64 deciphering.
 <br>
 
-Once the malware configuration has been "unpacked", the malware will perform multiple "if" instructions, these instructions contains the Anti-Analysis checks, the persistence
-installation mechanism, and if any of these checks have failed, it will tell the binary to finish up and stop running.
+Once the malware configuration has been "unpacked", the malware will perform multiple 'IF' instructions;
+These instructions contains the Anti-Analysis checks, persistence installation mechanisms, and if any of these checks fail;
+it will tell the binary to finish up and stop running.
 <br>
 
 If the checks have passed without any errors, it will than call back to the C2 server for further instructions. <br>
+
 The malware also has the ability to passively collect information regarding cryptowallets addresses while running.
 
 <br>
 <br>
 
+### Execution Flow
 ![flowchart](/images/AsyncRat/Flow.png)
 
 <br>
@@ -60,7 +61,7 @@ IAT Calls
 <br>
 
 ![PersistenceString](/images/AsyncRat/MoreChecksAndPersistence.png)
-Signs of Persistence
+Interesting strings from the malware
 <br>
 <br>
 <br>
@@ -68,18 +69,18 @@ Signs of Persistence
 ### DNSPY ANALYSIS
 #### As this binary was written in C#, it's pretty easy to check what it's doing with DNSPY
 ![ExecutionFlow](/images/AsyncRat/ExecutionFlow.png)
-The Execution Flow of the Malware Decompiled
+The Execution Flow of the Malware
 <br>
 <br>
 
 ![MalwareFunctions](/images/AsyncRat/Functions.png)
-Basic Functions of the C2 client, decompiled
+Basic Functions of the C2 client
 <br>
 <br>
 
 ### Malware Config Decryption and Encryption
 ![Cryption Alogrithm](/images/AsyncRat/Encryption.png)
-Encryption algorithm for the malware (Base -> CBC(HMAC AES256))
+Encryption algorithm for the malware (Base64 -> CBC(HMAC AES256))
 <br>
 <br>
 <br>
