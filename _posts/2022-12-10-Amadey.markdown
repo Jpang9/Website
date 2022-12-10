@@ -5,8 +5,8 @@ categories: blog malware analysis
 excerpt_separator: <!-- excerpt_end -->
 ---
 <!-- excerpt_start -->
-Amadey, A designed as a lightweight trojan, it is designed to initially infect and persist on an infected computer until the threat actor decides to deploy a malicious payload for the malware to 
-execute, payloads such as post-exploit tools, ransomware or even worms.
+Amadey, designed as a lightweight trojan; it is designed to initially infect and persist on an infected computer until 
+the threat actor decides to deploy a malicious payload for the malware to execute; payloads such as post-exploit tools, ransomware or stealers.
 <!-- excerpt_end -->
 <br>
 <br>
@@ -23,21 +23,21 @@ execute, payloads such as post-exploit tools, ransomware or even worms.
 ### Executive Summary
 Amadey is a Trojan type malware built for Windows systems, designed to persist on a system, until the threat actor decides to load a malicious payload 
 onto the system and have it executed within the system via the trojan. <br>
-The malware uses scheduled tasks for persistence, and uses a current location check; to ensure the malware is executed within the right location.
+The malware uses scheduled tasks for persistence, it also uses a binary location check to ensure the malware is executed within the right location.
 <br>
 <br>
 
 ### High Level Executive Summary
 Upon execution, the malware will begin a "self-check" function, this function will check the binaries current location and if it isn't located at %username%\local\Temp, it will 
-than create a directory with the following regex "ecac[0-9]{5}", and than copy itself into this directory with the name "gntuud.exe"; once the binary has been moved to the correct
+than create a directory with the following regex "ecac[0-9]{5}", and will copy itself into this directory with the name "gntuud.exe"; once the binary has been copied to the correct
 location, it will than execute the new binary and end the current one.<br>
 
 Upon execution of the new binary; as it is pretty much just the same binary as the original but moved, it will perform the check and once the check has passed with the 
 correct parameters, it will first set up persistence with scheduled task. <br>
 
 Then it will call back to the C2 Listening post with a unique ID and basic information of the infected device, effectively "registering" the infected device to the 
-C2 Botnet; the malware will use this id to contact the C2 for further instructions/payloads, and while waiting for further instructions, the malware will query
-and send system information back to the listener periodically.
+C2 Botnet; the malware will use this id to contact the C2 for further instructions/payloads, and while waiting for further instructions, the malware will passively query
+and send system information back to the listening post.
 <br>
 <br>
 
@@ -49,7 +49,7 @@ and send system information back to the listener periodically.
 
 ### Static Analysis
 ![notPacked](/images/Amadey/notpacked.png)
-This sample is not packed as shown through the differences of the raw and virtual size, only notable information is the odd volume name
+This sample is not packed as shown through the differences of the raw and virtual size, only notable information is the odd volume names
 <br>
 <br>
 
@@ -69,8 +69,8 @@ Looks to be some sort of system check due to its "Bool" value it is expecting
 ![NewLoc](/images/Amadey/newloca2.png)
 ![newLoc2](/images/Amadey/Newlocation.png)
 ![sha256Sum](/images/Amadey/samebinary.png)
-Malware performs a location check, and if it doesn't match the criteria it will create a directory in temp and create a copy into that location and have it execute, this binary is 
-the exact copy of the initial binary.
+Malware performs a location check, and if it doesn't match the criteria it will create a directory in the user AppData/Temp directory, which is than used to
+create a copy of the original binary into that location and have it execute from the new location.
 <br>
 <br>
 
@@ -88,7 +88,7 @@ Signs that this malware uses task scheduler to persist.
 
 ![DataSent](/images/Amadey/deviceIDandCallback.png)
 ![initialCallBack](/images/Amadey/initialcallbackpoc.png)
-The initial callback to the C2 server, providing the listening post information regarding the current device along with its unique identifier <br>
+The initial callback to the C2 server, provides the listening post information regarding the current device along with its unique identifier <br>
 This request format is used periodically to retrieve and execute the next instruction if any further instructions exist.
 <br>
 <br>
