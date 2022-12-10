@@ -11,7 +11,7 @@ the threat actor decides to deploy a malicious payload for the malware to execut
 <br>
 <br>
 
-![Meme](/)
+![Meme](/images/Amadey/meme.jpg)
 <br>
 
 ### Sha256Sum
@@ -42,7 +42,7 @@ and send system information back to the listening post.
 <br>
 
 ### Execution Flow
-![flowchart](/)
+![flowchart](/images/Amadey/FlowChart.png)
 <br>
 <br>
 <br>
