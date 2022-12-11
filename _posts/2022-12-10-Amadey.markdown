@@ -5,8 +5,9 @@ categories: blog malware analysis
 excerpt_separator: <!-- excerpt_end -->
 ---
 <!-- excerpt_start -->
-Amadey, designed as a lightweight trojan; it is designed to initially infect and persist on an infected computer until 
-the threat actor decides to deploy a malicious payload for the malware to execute; payloads such as post-exploit tools, ransomware or stealers.
+Amadey, designed as a lightweight trojan; is designed to initially infect and persist on an infected computer until 
+the threat actor decides to deploy a malicious payload for the malware to execute. <br>
+Malicious payloads such as post-exploit tools, ransomware or stealers.
 <!-- excerpt_end -->
 <br>
 <br>
@@ -21,22 +22,22 @@ the threat actor decides to deploy a malicious payload for the malware to execut
 <br>
 
 ### Executive Summary
-Amadey is a Trojan type malware built for Windows systems, designed to persist on a system, until the threat actor decides to load a malicious payload 
+Amadey is a Trojan-type malware built for the Windows operating system, designed to persist on the infected system until the threat actor decides to load a malicious payload 
 onto the system and have it executed within the system via the trojan. <br>
-The malware uses scheduled tasks for persistence, it also uses a binary location check to ensure the malware is executed within the right location.
+The malware uses scheduled tasks for persistence, the malware also uses a binary location check to ensure the malware is executed within the right location.
 <br>
 <br>
 
 ### High Level Executive Summary
 Upon execution, the malware will begin a "self-check" function, this function will check the binaries current location and if it isn't located at %username%\local\Temp, it will 
-than create a directory with the following regex "ecac[0-9]{5}", and will copy itself into this directory with the name "gntuud.exe"; once the binary has been copied to the correct
-location, it will than execute the new binary and end the current one.<br>
+then create a directory with the following regex "ecac[0-9]{5}", and will copy itself into this directory with the name "gntuud.exe"; once the binary has been copied to the correct
+location, it will then execute the new binary and end the current one.<br>
 
 Upon execution of the new binary; as it is pretty much just the same binary as the original but moved, it will perform the check and once the check has passed with the 
 correct parameters, it will first set up persistence with scheduled task. <br>
 
-Then it will call back to the C2 Listening post with a unique ID and basic information of the infected device, effectively "registering" the infected device to the 
-C2 Botnet; the malware will use this id to contact the C2 for further instructions/payloads, and while waiting for further instructions, the malware will passively query
+Then it will call back to the C2 Listening post with a unique ID and basic information about the infected device, effectively "registering" the infected device to the 
+C2 Botnet; the malware will use this unique ID to contact the C2 for further instructions/payloads, and while waiting for further instructions, the malware will passively query
 and send system information back to the listening post.
 <br>
 <br>
@@ -49,7 +50,7 @@ and send system information back to the listening post.
 
 ### Static Analysis
 ![notPacked](/images/Amadey/notpacked.png)
-This sample is not packed as shown through the differences of the raw and virtual size, only notable information is the odd volume names
+This sample is not packed as shown through the differences in the raw and virtual size, only notable information is the odd volume names
 <br>
 <br>
 
@@ -59,7 +60,7 @@ List of Window API calls
 <br>
 
 ![Check](/images/Amadey/LocationCheck.png)
-Looks to be some sort of system check due to its "Bool" value it is expecting
+Looks to be some sort of system check due to its "Boolean" result expectancy.
 <br>
 <br>
 <br>
@@ -69,8 +70,8 @@ Looks to be some sort of system check due to its "Bool" value it is expecting
 ![NewLoc](/images/Amadey/newloca2.png)
 ![newLoc2](/images/Amadey/Newlocation.png)
 ![sha256Sum](/images/Amadey/samebinary.png)
-Malware performs a location check, and if it doesn't match the criteria it will create a directory in the user AppData/Temp directory, which is than used to
-create a copy of the original binary into that location and have it execute from the new location.
+The malware performs a location check, and if it doesn't match the criteria it will create a directory in the user AppData/Temp directory, which is then used to
+create a copy of the original binary into that location and have it executed from the new location.
 <br>
 <br>
 
@@ -88,15 +89,15 @@ Signs that this malware uses task scheduler to persist.
 
 ![DataSent](/images/Amadey/deviceIDandCallback.png)
 ![initialCallBack](/images/Amadey/initialcallbackpoc.png)
-The initial callback to the C2 server, provides the listening post information regarding the current device along with its unique identifier <br>
+The initial callback to the C2 server provides the listening post information regarding the current device along with its unique ID. <br>
 This request format is used periodically to retrieve and execute the next instruction if any further instructions exist.
 <br>
 <br>
 
 ![TCPcallbacks](/images/Amadey/wiresharkinfo.png)
 ![DataStream](/images/Amadey/encryptedData.png)
-I would assume system information is sent back to the C2 like this, unable to fully confirm as the data is encrypted.<br>
-(The TCP calls fail as it cannot call back to the C2 Server due to how my environment is configured.)
+I would assume system information is sent back to the C2 like this, I'm unable to fully confirm as the data is encrypted.<br>
+(The TCP call fails as it cannot call back to the C2 Server due to how my environment is configured.)
 <br>
 <br>
 <br>
