@@ -144,7 +144,7 @@ div.preview {
 
 div.preview.shown {
     opacity: 1;
-    z-index: 1;
+    z-index: 11;
 }
 
 div.preview img {
