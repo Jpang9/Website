@@ -17,11 +17,9 @@ which is then exfiltrated back to the threat actor's listening post.
 ### Sha256Sum
 #### Packed
 - 24132208490f97dede6dacfd68d0ce94ba687e362f19dbdc718e9b0c073e91c2
-
+<br>
 #### Unpacked
 - 6827bff0508badecf28b1c6936fa967b82614767b0d6bbb34124fa736f940bb5
-
-<br>
 <br>
 
 ### Endpoints
@@ -35,15 +33,15 @@ which is then exfiltrated back to the threat actor's listening post.
 - hxxps[://]t[.]me/ibommat
 - hxxps[://]steamcommunity[.]com/profiles/76561199446766594
 <br>
-<br>
 
 ### Executive summary
 Arkei Stealer, A malware written in C++, is designed to enumerate and exfiltrate system and application information back to the threat actor's listening post. <br>
 
 The data retrieved by the malware contains information such as browser cache, cookies, saved logins, crypto wallets and sensitive documents within the infected system. <br>
-Data exfiltrated is stored in a .zip file and sent back to the threat actor. <br>
-This malware sample doesn't have persistence.
 
+Data exfiltrated is stored in a .zip file and sent back to the threat actor. <br>
+
+This malware sample doesn't have persistence.
 <br>
 <br>
 
@@ -78,7 +76,6 @@ By patching the binary, we can actually bypass the config check and continue fur
 <br>
 
 Files deemed sensitive and/or useful to the malware are then stored into a .zip file and is exfiltrated back to the listening post.
-<br>
 <br>
 <br>
 
