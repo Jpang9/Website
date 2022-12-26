@@ -17,7 +17,7 @@ which is then exfiltrated back to the threat actor's listening post.
 ### Sha256Sum
 #### Packed
 - 24132208490f97dede6dacfd68d0ce94ba687e362f19dbdc718e9b0c073e91c2
-<br>
+
 #### Unpacked
 - 6827bff0508badecf28b1c6936fa967b82614767b0d6bbb34124fa736f940bb5
 <br>
