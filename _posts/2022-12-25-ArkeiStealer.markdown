@@ -22,6 +22,17 @@ and can also be used to exfiltrate files on the victims machine based on paramet
 <br>
 <br>
 
+### Endpoints
+#### IP Address
+- hxxp[://]78[.]47[.]233[.]145
+- hxxp[://]78[.]46[.]254[.]202
+- hxxp[://]5[.]75[.]167[.]38
+<br>
+
+#### URLs
+- hxxps[://]t[.]me/ibommat
+- hxxps[://]steamcommunity[.]com/profiles/76561199446766594
+
 ### Executive summary
 Arkei Stealer, A malware written in C++. Designed to enumerate and exfiltrate system and application information back to the threat actor's listening post.
 The data that is retrieved by the malware, contains information such as browser cache, cookies, saved logins, crypto wallets and sensitive documents within the infected system.
@@ -71,6 +82,116 @@ Files deemed sensitive and/or useful to the malware are than stored into a .zip 
 <br>
 
 ### Technical Analysis
+![PreUnpacked](/images/ArkeiStealer/Pre-Unpacking.png)
+High Entropy, a Sign that the malware has been packed
+<br>
+<br>
 
+![Unpacked](/images/ArkeiStealer/PostUnpacking.png)
+Unpacked Malware, A lower entropy with some more interesting strings
 <br>
 <br>
+
+![Strings](/images/ArkeiStealer/NotableStringsUnpacked.png)
+Notable strings from the unpacked malware
+<br>
+<br>
+
+![Environment](/images/ArkeiStealer/GetEnvironmentalVariables.png)
+![Debugger](/images/ArkeiStealer/DBGEnvironment.png)
+Parses the environmental variables within the infected system
+<br>
+<br>
+
+### Initial Decryption Process
+![DecryptInitial](/images/ArkeiStealer/DecryptEncryptedContentInitial.png)
+Decrypt the encrypted content
+<br>
+<br>
+
+#### Decryption Process
+![base64](/images/ArkeiStealer/base64Decipher.png)
+![API](/images/ArkeiStealer/B64DecryptionAPI.png)
+The encrypted strings are initially deciphered with base64 through the use of the [CrypStringToBinaryA](https://learn.microsoft.com/en-us/windows/win32/api/wincrypt/nf-wincrypt-cryptstringtobinarya)
+<br>
+<br>
+
+![Decryption1](/images/ArkeiStealer/DecryptionStub1.png)
+![Decryption2](/images/ArkeiStealer/DecryptionStub2.png)
+![Decryption3](/images/ArkeiStealer/DecryptionStub3.png)
+![Decryption4](/images/ArkeiStealer/DecryptionStub4.png)
+The decryption stub of the malware, unsure what algorithm it is.
+<br>
+<br>
+
+#### Api Loading
+![API Loading](/images/ArkeiStealer/LoadInitialDecryptedStubIntoLibrary.png)
+The decrypted APIs are than moved into another location within the allocated memory and loaded with the help of "GetProcAddress" and "LoadLibraryA"
+<br>
+<br>
+
+### Anti-Sandbox Check
+![GenericHostnameCheck](/images/ArkeiStealer/ComputerCheck.png)
+The malware will perform a computer check against the name "HAL9TH", if it does, it will proceed to the Username Check
+<br>
+<br>
+
+![GenericUsernameCheck](/images/ArkeiStealer/AntiVmCheck.png)
+The malware will check the username of the host, and if it matches "JohnDoe" it will proceed to the "ExitProcess" API
+<br>
+<br>
+<br>
+
+### Secondary Decryption Process
+![DecryptionAsm](/images/ArkeiStealer/SecondaryDecryptionContentNASM.png)
+The two subroutines are used to decrypt and load the decrypted content into the binary's library.
+<br>
+<br>
+
+#### Decryption Segment
+![SecondaryDecrypt1](/images/ArkeiStealer/SecondaryDecrypt1.png)
+![SecondaryDecrypt2](/images/ArkeiStealer/SecondaryDecrypt2.png)
+![SecondaryDecrypt3](/images/ArkeiStealer/SecondaryDecrypt3.png)
+![SecondaryDecrypt4](/images/ArkeiStealer/SecondaryDecrypt5.png)
+Decrypt the secondary encrypted content, contains additional APIs along with browser and crypto-wallet contents
+<br>
+<br>
+
+#### Load Secondary APIs into library
+![LoadSecondaryLibrary](/images/ArkeiStealer/LoadSecondaryDecryptContent.png)
+This procedure functions the same as the initial library loading function.
+<br>
+<br>
+<br>
+
+### Parsing Listener URL
+##### The malware uses 3 different methods to retrieve the listening post's URL, Telegram, Steam, HardCoded IP in that order
+![Mavi](/images/ArkeiStealer/ParseContentAfterMavi.png)
+The first two methods rely on the malware parsing anything after the word "Mavi"
+<br>
+<br>
+
+#### Telegram
+![Telegram](/images/ArkeiStealer/TelegramCall.png)
+![WiresharkTele](/images/ArkeiStealer/WSTelegram.png)
+The malware will attempt to contact this telegram profile for the IP in question.
+<br>
+
+![TelegramProfile](/images/ArkeiStealer/TeleGramPOC.png)
+<br>
+<br>
+
+#### Steam Community
+![Steam](/images/ArkeiStealer/SteamGraph.png)
+![SteamCall](/images/ArkeiStealer/ParseSteam.png)
+![SteamPOC](/images/ArkeiStealer/SteamPOC.png)
+Parses the SteamCommunity profile for the IP address after the words "Mavi"
+<br>
+<br>
+
+![SteamProfileInQuestion](/images/ArkeiStealer/SteamCommunityAbuse.png)
+The steam profile in question
+<br>
+<br>
+
+#### HardCoded IP
