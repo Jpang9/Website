@@ -17,8 +17,10 @@ which is then exfiltrated back to the threat actor's listening post.
 ### Sha256Sum
 #### Packed
 - 24132208490f97dede6dacfd68d0ce94ba687e362f19dbdc718e9b0c073e91c2
+
 #### Unpacked
 - 6827bff0508badecf28b1c6936fa967b82614767b0d6bbb34124fa736f940bb5
+
 <br>
 <br>
 
@@ -36,8 +38,9 @@ which is then exfiltrated back to the threat actor's listening post.
 <br>
 
 ### Executive summary
-Arkei Stealer, A malware written in C++, is designed to enumerate and exfiltrate system and application information back to the threat actor's listening post.
-The data retrieved by the malware contains information such as browser cache, cookies, saved logins, crypto wallets and sensitive documents within the infected system.
+Arkei Stealer, A malware written in C++, is designed to enumerate and exfiltrate system and application information back to the threat actor's listening post. <br>
+
+The data retrieved by the malware contains information such as browser cache, cookies, saved logins, crypto wallets and sensitive documents within the infected system. <br>
 Data exfiltrated is stored in a .zip file and sent back to the threat actor. <br>
 This malware sample doesn't have persistence.
 
@@ -49,16 +52,18 @@ Upon execution, the malware will initially decrypt the encrypted segments locate
 APIs such as [VirtAlloc](https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualalloc) and [VirtualAllocExNuma](https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualallocexnuma).
 
 Once the decryption process is completed, it will begin to dynamically allocate these APIs to different parts the memory allocated by the binary. 
-The APIs that have been decrypted and moved, will be loaded with the two APIS "GetProcAddress" and "LoadLibraryA". <br>
+The APIs that have been decrypted and moved, will be loaded with the two APIs [GetProcAddress](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-getprocaddress) 
+and [LoadLibraryA](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibrarya). <br>
 
-The malware performs a basic Sandbox check, done by checking the hostname along with the username of the system, and if any of these factors match either of these two words "HAL9TH" and "JohnDoe",
+The malware performs a basic Sandbox check, done by checking the hostname along with the username of the system, and if any of these factors match either of these two words <b> "HAL9TH" </b> and <b>"JohnDoe"</b>,
 the process will stop execution and terminate itself. <br>
 
-After the execution of the sandbox/VM check, it will then begin decryption the second portion of the encrypted content, the decrypted contents contains information such as Crypto-Wallets, 
+After the execution of the sandbox/VM check, it will then begin decrypting the second portion of the encrypted content, the decrypted contents contains information such as Crypto-Wallets, 
 Browser cache, Browser credentials along with any sensitive documents which the threat actor deems important.
 
-The decryption process also outputs additional API calls, especially ones that relate to its communication procedure, such as, "HttpSendRequestA" and "InternetConnectA". Similar to the previous decryption process, the API is moved to a different location in memory and is called
-with "GetProcAddress" and "LoadLibraryA" <br>
+The decryption process also outputs additional API calls, especially ones that relate to its communication procedure, such as, [HttpSendRequestA](https://learn.microsoft.com/en-us/windows/win32/api/wininet/nf-wininet-httpsendrequesta) and [InternetConnectA](https://learn.microsoft.com/en-us/windows/win32/api/wininet/nf-wininet-internetconnecta). <br>
+Similar to the previous decryption process, the API is moved to a different location in memory and is called
+with [GetProcAddress](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-getprocaddress) and [LoadLibraryA](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibrarya). <br>
 
 Once the secondary decryption process has been completed, it will begin parse the various endpoints which contains the URL for the malware to contact back too. This malware sample uses 3 methods to parse the listener's address value. 
 Through Telegram, SteamCommunity, or through a hardcoded IP address located within the binary itself. 
@@ -232,6 +237,10 @@ By the looks of it, the malware will proceed with the full retrieval process reg
 #### From further research, it looks like the malware stuffs all the stolen content into a .zip file and sends that zip file back to the listening post.
 #### Suspect to rely on the update.zip file as the malware can't actually proceed after the stealing stage since I had to patch the binary to bypass the URL stage
 #### [Reference](https://malpedia.caad.fkie.fraunhofer.de/details/win.arkei_stealer)
+<br>
+<br>
+<br>
+
 
 
 
